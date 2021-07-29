@@ -1,3 +1,4 @@
+# libraries import
 import pyttsx3
 import datetime
 import speech_recognition as sr
@@ -12,6 +13,7 @@ voices = engine.getProperty('voices')
 engine.setProperty('voice', voices[0].id)
 
 
+# defining speak function
 def speak(audio):
     engine.say(audio)
     engine.runAndWait()
@@ -49,8 +51,8 @@ def sendEmail(to, content):
     server = smtplib.SMTP('smtp.gmail.com', 587)
     server.ehlo()
     server.starttls()
-    server.login('youremail@gmail.com', 'your-password') #my email my password
-    server.sendmail('youremail@gmail.com',to,content)
+    server.login('youremail@gmail.com', 'your-password')  # email & password
+    server.sendmail('youremail@gmail.com', to, content)
     server.close()
 
 
@@ -74,8 +76,8 @@ if __name__ == "__main__":
         elif 'the time' in query:
             strtime = datetime.datetime.now().strftime("%H:%M:%S")
             speak(f"sir , the time is {strtime}")
-        elif 'open code' in query:
-            code_path = ""
+        elif 'play movie interstellar' in query:
+            code_path = "F:\Interstellar\Interstellar.mp4"
             os.startfile(code_path)
             pass
         elif 'email to anish' in query:
@@ -83,7 +85,7 @@ if __name__ == "__main__":
                 speak("What should i say?")
                 content = takeCommand()
                 to = "abhirup.hazra.2@gmail.com"
-                sendEmail(to,content)
+                sendEmail(to, content)
                 speak("Email has been sent!")
             except Exception as e:
                 print(e)
